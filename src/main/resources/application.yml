@@ -1,0 +1,41 @@
+spring:
+  port: 8089
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=BankSystem;encrypt=true;trustServerCertificate=true
+    username: sa
+    password: 1234
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    jpa:
+      hibernate:
+        ddl-auto: update
+        show-sql: false
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.SQLServerDialect
+          format_sql: true
+  kafka:
+    bootstrap-servers: localhost:9093
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: transaction-group
+      max-poll-records: 20
+      enable-auto-commit: false
+      auto-commit-interval: 100
+      session-timeout: 150000
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  data:
+    redis:
+      connect-timeout: 60000
+      host: localhost
+      port: 6379
+
+
+telegram:
+  bot:
+    token: 7822377759:AAGfpplx-ZflmkwgH2TTmDUL1xF2H8MVgZA
+    username: TransactionNotificateBot
+    chatId: 6160839800
