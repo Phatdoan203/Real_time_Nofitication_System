@@ -1,20 +1,23 @@
+
 spring:
-  port: 8089
   datasource:
-    url: jdbc:sqlserver://localhost:1433;databaseName=BankSystem;encrypt=true;trustServerCertificate=true
+#    url: jdbc:sqlserver://${DB_HOST}:${DB_PORT};databaseName=${DB_NAME};encrypt=false
+    url: jdbc:sqlserver://localhost:1434;databaseName=BankSystem;encrypt=false
+#    username: ${DB_USERNAME}
     username: sa
-    password: 1234
+#    password: ${DB_PASS}
+    password: Phat1234
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    jpa:
+  jpa:
+    hibernate:
+      ddl-auto: update
+      show-sql: false
+    properties:
       hibernate:
-        ddl-auto: update
-        show-sql: false
-      properties:
-        hibernate:
-          dialect: org.hibernate.dialect.SQLServerDialect
-          format_sql: true
+        format_sql: true
+    database-platform: org.hibernate.dialect.SQLServerDialect
   kafka:
-    bootstrap-servers: localhost:9093
+    bootstrap-servers: localhost:9092
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
@@ -33,9 +36,9 @@ spring:
       host: localhost
       port: 6379
 
-
 telegram:
   bot:
     token: 7822377759:AAGfpplx-ZflmkwgH2TTmDUL1xF2H8MVgZA
     username: TransactionNotificateBot
     chatId: 6160839800
+

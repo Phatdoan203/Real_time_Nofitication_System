@@ -20,11 +20,12 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Transaction {
+//    @GeneratedValue(generator = "UUID")
+//    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+//    @Column(columnDefinition = "uniqueidentifier")
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(columnDefinition = "uniqueidentifier")
-    private UUID transaction_id;
+    @Column(unique = true, nullable = false)
+    private int transaction_id;
     @NotNull
     private Timestamp time_stamp = new Timestamp(System.currentTimeMillis());
     @NotNull

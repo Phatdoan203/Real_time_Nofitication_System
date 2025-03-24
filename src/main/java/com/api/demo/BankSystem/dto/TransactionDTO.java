@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TransactionDTO {
+    public int transactionId;
     public String status;
     public String type;
     public String from_account;
